@@ -135,3 +135,23 @@ document.getElementById("btn-buscar-post").addEventListener("click", post_id);
 
 
 
+/*Tarefa por Id*/
+async function tarefa_por_id() {
+    const id = document.getElementById("input-todo-id").value;
+
+    const url = `https://dummyjson.com/todos/${id}`;
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("todo-texto").innerText = `Tarefa: ${dados.todo}`;
+    document.getElementById("todo-status").innerText = `Concluída: ${dados.completed}`;
+
+}
+document.getElementById("btn-buscar-todo").addEventListener("click", tarefa_por_id);
+
+
+
+
+
+
