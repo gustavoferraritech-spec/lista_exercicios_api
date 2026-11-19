@@ -31,3 +31,29 @@ async function produto_id() {
 }
 document.getElementById("btn-buscar-id").addEventListener("click", produto_id);
 
+
+
+
+
+
+
+
+
+
+
+
+/* Consultar CEP */
+/* MELHORAR AS COISAS QUANDO UM CEP NÃO EXISTIR */
+async function consultar_cep() {
+    const cep = document.getElementById("input-cep").value;
+    
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("cep-rua").innerText = `Rua: ${dados.logradouro}`;
+    document.getElementById("cep-bairro").innerText = `Bairro: ${dados.bairro}`;
+    document.getElementById("cep-cidade").innerText = `Cidade: ${dados.localidade} / UF: ${dados.uf}`;
+}
+document.getElementById("btn-buscar-cep").addEventListener("click", consultar_cep);
