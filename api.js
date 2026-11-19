@@ -109,3 +109,29 @@ async function lista_produtos() {
     document.getElementById("lista-primeiro").innerText = `Primeiro produto: ${dados[0].title}` /*Pegando o primeiro produto, e acessando a propriedade titile*/
 }
 document.getElementById("btn-lista").addEventListener("click", lista_produtos);
+
+
+
+
+
+
+/*POST por Id*/
+async function post_id() {
+    const id = document.getElementById("input-post-id").value;
+    
+    const url = `https://dummyjson.com/posts/${id}`;
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("post-titulo").innerText = dados.title;
+    document.getElementById("post-corpo").innerText = dados.body;
+
+}
+document.getElementById("btn-buscar-post").addEventListener("click", post_id);
+
+
+
+
+
+
