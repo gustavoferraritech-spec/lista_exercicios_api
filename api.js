@@ -70,3 +70,26 @@ async function categoria_produto() {
     document.getElementById("cat-nome").innerText = dados.category;
 }
 document.getElementById("btn-buscar-cat").addEventListener("click", categoria_produto);
+
+
+
+
+
+
+
+/* Usuário por ID */
+/*MELHORAR QUANDO O ID NÃO EXISTIR MAIS*/
+async function usuario_id() {
+    const id = document.getElementById("input-user-id").value;
+
+    const url = `https://dummyjson.com/users/${id}`
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("user-nome").innerText = `Nome: ${dados.firstName}`
+    document.getElementById("user-email").innerText = `E-mail: ${dados.email}`
+    document.getElementById("user-perfil").innerText = `Perfil: ${dados.role}`
+}
+document.getElementById("btn-buscar-user").addEventListener("click", usuario_id);
+
