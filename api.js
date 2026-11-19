@@ -93,3 +93,19 @@ async function usuario_id() {
 }
 document.getElementById("btn-buscar-user").addEventListener("click", usuario_id);
 
+
+
+
+
+/* Lista de 10 produtos */
+async function lista_produtos() {
+
+    const url = "https://fakestoreapi.com/products?limit=10";
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("lista-quantidade").innerText = `Quantidade: ${dados.length}` /*Estamos vendo qual é a quantidade de dados*/
+    document.getElementById("lista-primeiro").innerText = `Primeiro produto: ${dados[0].title}` /*Pegando o primeiro produto, e acessando a propriedade titile*/
+}
+document.getElementById("btn-lista").addEventListener("click", lista_produtos);
