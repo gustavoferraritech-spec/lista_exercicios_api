@@ -68,7 +68,7 @@
       <p class="subtitulo">Consulte o endereço digitando os 8 números do CEP na API pública do ViaCEP.</p>
 
       <div class="linha-busca">
-        <input type="text" id="input-cep" placeholder="Ex: 01001000" maxlength="8">
+        <input type="text" id="input-cep" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')"  placeholder="Ex: 01001000" maxlength="8">
         <button id="btn-buscar-cep" class="btn">Consultar CEP</button>
       </div>
 
