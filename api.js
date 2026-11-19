@@ -35,13 +35,6 @@ document.getElementById("btn-buscar-id").addEventListener("click", produto_id);
 
 
 
-
-
-
-
-
-
-
 /* Consultar CEP */
 /* MELHORAR AS COISAS QUANDO UM CEP NÃO EXISTIR */
 async function consultar_cep() {
@@ -57,3 +50,23 @@ async function consultar_cep() {
     document.getElementById("cep-cidade").innerText = `Cidade: ${dados.localidade} / UF: ${dados.uf}`;
 }
 document.getElementById("btn-buscar-cep").addEventListener("click", consultar_cep);
+
+
+
+
+
+
+
+/* Categoria do produto*/
+/*MELHORAR COISAS QUANDO O ID NÃO EXISTIR MAIS*/
+async function categoria_produto() {
+    const id = document.getElementById("input-cat-id").value;
+
+    const url = `https://dummyjson.com/products/${id}`;
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("cat-nome").innerText = dados.category;
+}
+document.getElementById("btn-buscar-cat").addEventListener("click", categoria_produto);
