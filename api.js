@@ -16,12 +16,20 @@ document.getElementById("btn-buscar").addEventListener("click", exercicio_com_pr
 
 
 
+
+
 /*Buscar produto_id*/
 async function produto_id() {
     const id = document.getElementById("input-id").value;
 
     const url = `https://dummyjson.com/products/${id}`;
     const resposta = await fetch(url);   // 1º await: espera a rede
+
+    if(!resposta.ok) {
+        window.alert("Erro na requisição!");    /*Tratamento de erro quando o ID não existir*/
+        return
+    };
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -35,14 +43,21 @@ document.getElementById("btn-buscar-id").addEventListener("click", produto_id);
 
 
 
+
+
 /* Consultar CEP */
-/* MELHORAR AS COISAS QUANDO UM CEP NÃO EXISTIR */
 async function consultar_cep() {
     const cep = document.getElementById("input-cep").value;
     
     const url = `https://viacep.com.br/ws/${cep}/json/`;
     const resposta = await fetch(url);   // 1º await: espera a rede
     const dados = await resposta.json(); // 2º await: abre o JSON
+
+    if(dados.erro) {
+        window.alert("CEP não encontrado!");
+        return
+    };
+
     console.log(dados);                  // confira no F12
 
     document.getElementById("cep-rua").innerText = `Rua: ${dados.logradouro}`;
@@ -57,13 +72,21 @@ document.getElementById("btn-buscar-cep").addEventListener("click", consultar_ce
 
 
 
+
+
 /* Categoria do produto*/
-/*MELHORAR COISAS QUANDO O ID NÃO EXISTIR MAIS*/
 async function categoria_produto() {
     const id = document.getElementById("input-cat-id").value;
 
     const url = `https://dummyjson.com/products/${id}`;
     const resposta = await fetch(url);   // 1º await: espera a rede
+
+    
+    if(!resposta.ok){
+        window.alert("Erro na requisição!");    /*Tratamento de erro quando o ID não existir*/
+        return
+    };
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -78,12 +101,17 @@ document.getElementById("btn-buscar-cat").addEventListener("click", categoria_pr
 
 
 /* Usuário por ID */
-/*MELHORAR QUANDO O ID NÃO EXISTIR MAIS*/
 async function usuario_id() {
     const id = document.getElementById("input-user-id").value;
 
     const url = `https://dummyjson.com/users/${id}`
     const resposta = await fetch(url);   // 1º await: espera a rede
+    
+    if(!resposta.ok){
+        window.alert("Erro na requisição!");    /*Tratamento de erro quando o ID não existir*/
+        return
+    };
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -97,11 +125,14 @@ document.getElementById("btn-buscar-user").addEventListener("click", usuario_id)
 
 
 
+
+
 /* Lista de 10 produtos */
 async function lista_produtos() {
 
     const url = "https://fakestoreapi.com/products?limit=10";
     const resposta = await fetch(url);   // 1º await: espera a rede
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -115,12 +146,21 @@ document.getElementById("btn-lista").addEventListener("click", lista_produtos);
 
 
 
+
+
 /* POST por Id */
 async function post_id() {
     const id = document.getElementById("input-post-id").value;
     
     const url = `https://dummyjson.com/posts/${id}`;
     const resposta = await fetch(url);   // 1º await: espera a rede
+
+
+    if(!resposta.ok){
+        window.alert("Erro na requisição!");    /*Tratamento de erro quando o ID não existir*/
+        return
+    }
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -135,12 +175,21 @@ document.getElementById("btn-buscar-post").addEventListener("click", post_id);
 
 
 
+
+
 /* Tarefa por Id */
 async function tarefa_por_id() {
     const id = document.getElementById("input-todo-id").value;
 
     const url = `https://dummyjson.com/todos/${id}`;
     const resposta = await fetch(url);   // 1º await: espera a rede
+
+    
+    if(!resposta.ok){
+        window.alert("Erro na requisição!");    /*Tratamento de erro quando o ID não existir*/
+        return
+    }
+
     const dados = await resposta.json(); // 2º await: abre o JSON
     console.log(dados);                  // confira no F12
 
@@ -149,6 +198,8 @@ async function tarefa_por_id() {
 
 }
 document.getElementById("btn-buscar-todo").addEventListener("click", tarefa_por_id);
+
+
 
 
 
@@ -176,3 +227,5 @@ async function desafio_secreto() {
     console.log(dados);                  // confira no F12
 }
 document.getElementById("btn-buscar").addEventListener("click", desafio_secreto);
+
+
