@@ -115,7 +115,7 @@ document.getElementById("btn-lista").addEventListener("click", lista_produtos);
 
 
 
-/*POST por Id*/
+/* POST por Id */
 async function post_id() {
     const id = document.getElementById("input-post-id").value;
     
@@ -135,7 +135,7 @@ document.getElementById("btn-buscar-post").addEventListener("click", post_id);
 
 
 
-/*Tarefa por Id*/
+/* Tarefa por Id */
 async function tarefa_por_id() {
     const id = document.getElementById("input-todo-id").value;
 
@@ -152,6 +152,27 @@ document.getElementById("btn-buscar-todo").addEventListener("click", tarefa_por_
 
 
 
+/* Ordens da fabrica Senai */
+async function fabrica_senai() {
+    const url = "./api/ordens.json";
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+    console.log(dados);                  // confira no F12
+
+    document.getElementById("ordem-numero").innerText = `Ordem: ${dados[0].numero}`;
+    document.getElementById("ordem-cliente").innerText = `Cliente: ${dados[0].cliente}`;
+
+}
+document.getElementById("btn-ordens").addEventListener("click", fabrica_senai);
 
 
 
+/* Desafio secreto */
+async function desafio_secreto() {
+    const url = "./api/desafio-bonus.json"
+    const resposta = await fetch(url);   // 1º await: espera a rede
+    const dados = await resposta.json(); // 2º await: abre o JSON
+
+    console.log(dados);                  // confira no F12
+}
+document.getElementById("btn-buscar").addEventListener("click", desafio_secreto);
